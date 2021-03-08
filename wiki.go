@@ -49,7 +49,7 @@ func editHandler(w http.ResponseWriter, r *http.Request){
 	t.Execute(w,p)
 }
 func main(){
-    http.Handle("/css/", http.FileServer(http.Dir("./views/css/")))
+	http.Handle("/css/", http.StripPrefix("/css/", http.FileServer(http.Dir("./views/css/"))))
 	http.HandleFunc("/view/",viewHandler)
 	http.HandleFunc("/edit/",editHandler)
 	http.HandleFunc("/save/",saveHandler)
